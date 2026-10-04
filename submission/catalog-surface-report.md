@@ -2,7 +2,7 @@
 
 Generated from `src/generated/v3Catalog.ts`.
 
-- Source OpenAPI SHA-256: `6fd8434541fdb96678cd83b995f3e3dc33201e0fc5ef7fe3ae1202cb32c0ff2a`
+- Source OpenAPI SHA-256: `04dbe584de8b0a646df927bdf0e030356e14ca606948a30573d575cb2287eb8c`
 - Total catalog endpoints: 260
 - Read-only GET endpoints: 120
 - Non-destructive write/action endpoints: 106

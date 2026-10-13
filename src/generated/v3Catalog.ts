@@ -3,7 +3,7 @@
 
 import type { V3Endpoint } from "../catalog";
 
-export const V3_CATALOG_SOURCE_SHA256 = "d6a86948d08a36e753971d395370d8d4770defd7fcd1c1391ddf5d87b6535e52";
+export const V3_CATALOG_SOURCE_SHA256 = "01ca668f89f424e04735b2b5bd6f1a5bc266f4568c1e4239146cc445984b92c6";
 
 export const V3_ENDPOINTS = [
   {
@@ -5331,7 +5331,7 @@ export const V3_ENDPOINTS = [
     "method": "POST",
     "path": "/v3/pages",
     "summary": "Create a landing page",
-    "description": "Creates a business-scoped landing page using the same page creation behavior as Landing Page Studio. The request body below documents the HTML Mode payload. To create and publish an HTML Mode page in one call, include `is_published: true` with `page_display`. If `is_published` is omitted or false, the nested `page_display` is saved as an unpublished draft and is not returned as the page's current display; create or pick a page display, then call `PATCH /v3/pages/{id}` with `is_published: true` and `current_page_display_id` to publish it. A saved checkout form initializes an unbound page's `store_id` from `page_display.form_display.store_id`, including unpublished drafts. The store must belong to the same business.",
+    "description": "Creates a business-scoped landing page using the same page creation behavior as Landing Page Studio. The request body below documents the HTML Mode payload. To create and publish an HTML Mode page in one call, include `is_published: true` with `page_display`. If `is_published` is omitted or false, the nested `page_display` is saved as an unpublished draft and is not returned as the page's current display; create or pick a page display, then call `PATCH /v3/pages/{id}` with `is_published: true` and `current_page_display_id` to publish it. A saved checkout form initializes an unbound page's `store_id` from `page_display.form_display.store_id`, including unpublished drafts. The store must belong to the same business. Supported embedded base64 images are uploaded before the page is created; read its saved display for canonical CDN-backed html_document source. Invalid embedded images return 422 and upload failures return 503.",
     "externalDocs": {
       "url": "https://docs.scalev.dev/docs/landing-pages-api",
       "description": "Read the Landing Pages API guide before creating or publishing HTML Mode pages."
@@ -5656,7 +5656,7 @@ export const V3_ENDPOINTS = [
     "method": "POST",
     "path": "/v3/pages/{page_id}/page-displays",
     "summary": "Create a landing page display",
-    "description": "Creates a new display for an existing landing page. The request body below documents the HTML Mode page display payload. Saving the first checkout form initializes an unbound page's `store_id` from `form_display.store_id` immediately, before publication. The store must belong to the same business. An existing page store association is retained and cannot be changed or cleared by later display saves.",
+    "description": "Creates a new display for an existing landing page. The request body below documents the HTML Mode page display payload. Content saves convert supported base64 images to CDN URLs; use the returned html_document as canonical source. Invalid embedded images return 422, upload failures 503, and edits made concurrently during upload 409. Saving the first checkout form initializes an unbound page's `store_id` from `form_display.store_id` immediately, before publication. The store must belong to the same business. An existing page store association is retained and cannot be changed or cleared by later display saves.",
     "externalDocs": {
       "url": "https://docs.scalev.dev/docs/landing-pages-api",
       "description": "Read the Landing Pages API guide before creating or publishing HTML Mode pages."
@@ -5814,7 +5814,7 @@ export const V3_ENDPOINTS = [
     "method": "POST",
     "path": "/v3/pages/{page_id}/page-displays/validate",
     "summary": "Validate a landing page display",
-    "description": "Validates the same landing page display payload accepted by create without persisting a page-display record.",
+    "description": "Validates the same landing page display payload accepted by create without persisting a page-display record or uploading images. For supplied HTML content, html_image_conversion reports source bytes, projected final bytes and the number of unique images. Image validation errors appear in validation_errors.",
     "externalDocs": {
       "url": "https://docs.scalev.dev/docs/landing-pages-api",
       "description": "Read the Landing Pages API guide before creating or publishing HTML Mode pages."

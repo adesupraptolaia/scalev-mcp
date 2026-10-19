@@ -3,7 +3,7 @@
 
 import type { V3Endpoint } from "../catalog";
 
-export const V3_CATALOG_SOURCE_SHA256 = "d6a86948d08a36e753971d395370d8d4770defd7fcd1c1391ddf5d87b6535e52";
+export const V3_CATALOG_SOURCE_SHA256 = "052885cfddb5838d7a45ee404edc032624350e63c8e5e6604bea49665a22bd59";
 
 export const V3_ENDPOINTS = [
   {
@@ -3235,7 +3235,7 @@ export const V3_ENDPOINTS = [
     "method": "GET",
     "path": "/v3/locations",
     "summary": "List locations for authenticated business flows",
-    "description": "Requires the `order:create` scope. Retrieve a cursor-paginated list of locations with optional search.",
+    "description": "Requires the `order:create` scope. Retrieve a cursor-paginated list of locations with optional search. Search matches province, city, kecamatan, and kelurahan/desa names. Results are kelurahan/desa locations only (`parent_id` points to the kecamatan); kecamatan locations are never listed. Results are ordered by kecamatan, city, then kelurahan; when no location contains every word, a typo-tolerant fallback returns the closest matches ranked by similarity.",
     "tags": [
       "Locations"
     ],
@@ -3313,7 +3313,7 @@ export const V3_ENDPOINTS = [
         "name": "location_id",
         "in": "path",
         "required": true,
-        "description": "Legacy numeric location ID.",
+        "description": "Legacy numeric location ID of a kecamatan or a kelurahan/desa.",
         "schema": {
           "type": "integer"
         }

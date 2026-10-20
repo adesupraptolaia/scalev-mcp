@@ -3,7 +3,7 @@
 
 import type { V3Endpoint } from "../catalog";
 
-export const V3_CATALOG_SOURCE_SHA256 = "e1676e1dc43a2e61b99c7d3b04d0eed3b1bdac182059b6e6be94b21d9a2ae46e";
+export const V3_CATALOG_SOURCE_SHA256 = "26b6f16e7a5e922622c021d0b18bb3ea23154588ca7f2e155d263f65ab335f46";
 
 export const V3_ENDPOINTS = [
   {
@@ -3235,7 +3235,7 @@ export const V3_ENDPOINTS = [
     "method": "GET",
     "path": "/v3/locations",
     "summary": "List locations for authenticated business flows",
-    "description": "Requires the `order:create` scope. Retrieve a cursor-paginated list of locations with optional search. Search matches province, city, kecamatan, and kelurahan/desa names. Results are kelurahan/desa locations only; kecamatan locations are never listed. Results are ordered by kecamatan, city, then kelurahan; when no location contains every word, a typo-tolerant fallback returns the closest matches ranked by similarity.",
+    "description": "Requires the `order:create` scope. Retrieve a cursor-paginated list of locations with optional search.",
     "tags": [
       "Locations"
     ],
